@@ -11,12 +11,12 @@ const registrar = (nombreAnimal, edad, tipoAnimal, colorAnimal, enfermedad) => {
         colorMascota: colorAnimal,
         enfermedad: enfermedad
     }
-    let arregloCitas = [];
+    // let arregloCitas = [];
     let visitas = (fs.readFileSync('citas.json', 'utf-8'))
     
     const miArreglo = JSON.parse(visitas)
-    
-     arregloCitas.push(miArreglo)
+
+    let arregloCitas = miArreglo
      arregloCitas.push(mascota)
     console.log(arregloCitas)
     
