@@ -1,1 +1,1 @@
-Desafío desarrollado con Node. Utilizando su módulo de File Sysytem
+Desafío desarrollado con Node y JavaScript. Utilizando su módulo de File Sysytem
