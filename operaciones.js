@@ -2,7 +2,7 @@
 const fs = require('fs');
 
 const registrar = (nombreAnimal, edad, tipoAnimal, colorAnimal, enfermedad) => {
-//    leer CredentialsContainer.json
+    // se crea objeto mascota
     const mascota = 
     {
         nombreMascota: nombreAnimal,
@@ -11,23 +11,31 @@ const registrar = (nombreAnimal, edad, tipoAnimal, colorAnimal, enfermedad) => {
         colorMascota: colorAnimal,
         enfermedad: enfermedad
     }
-    // let arregloCitas = [];
-    let visitas = (fs.readFileSync('citas.json', 'utf-8'))
     
-    const miArreglo = JSON.parse(visitas)
-
-    let arregloCitas = miArreglo
-     arregloCitas.push(mascota)
-    console.log(arregloCitas)
+   try{
+     // Se lee, extrae y transforma json en string
+     let visitas = (fs.readFileSync('citas.json', 'utf-8'))
+     const miArreglo = JSON.parse(visitas)
+ 
+     // Se unen nueva mascota a listado de citas
+     const citas = [...miArreglo, mascota]
     
-    // const citas = miArreglo.push(mascota);
-    fs.writeFileSync('citas.json',JSON.stringify(arregloCitas))
-    console.log('archivo actualizado')
+     
+     fs.writeFileSync('citas.json',JSON.stringify(citas))
+     console.log('Archivo actualizado con nueva cita.');
+   }catch(e){
+    console.error(`Error al cargar archivo: ${e}.`);
+   }
 }
 
 const leer = () => {
-  const leido =  fs.readFileSync('citas.json', 'utf-8');
+  try{
+    //Se lee y muestra el contenido de citas.json
+    const leido =  fs.readFileSync('citas.json', 'utf-8');
     console.log(JSON.parse(leido))
+  }catch (e){
+    console.error(`Error al leer archivo: ${e}.`)
+  }
 }
 
 module.exports = {registrar, leer}
