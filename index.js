@@ -11,7 +11,7 @@ if (!nombreFuncion) {
             if (argumentos.length === 6) {
                 registrar(...argumentos.slice(1));
             } else {
-                console.log('Número incorrecto de argumentos para "registrar".');
+                console.log('Número incorrecto de argumentos para "registrar". INGRESAR NOMBRE, EDAD, TIPO MASCOTA, COLOR Y ENFERMEDAD');
             }
             break;
 
