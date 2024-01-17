@@ -20,15 +20,11 @@ const registrar = (nombreAnimal, edad, tipoAnimal, colorAnimal, enfermedad) => {
         let visitas = (fs.readFileSync('citas.json', 'utf-8'))
         miArreglo = JSON.parse(visitas)
     
-        // Se unen nueva mascota a listado de citas
+        // Se unen nueva cita a listado de citas
         const citas = [...miArreglo, mascota]
         
         fs.writeFileSync('citas.json',JSON.stringify(citas))
         console.log('======================= NUEVA CITA AGENDADA =========================')
-        // citas.forEach((cita,index) => {
-        //     console.log(`Cita N° ${index +1}`, cita)
-        //     console.log('---------------------------------------------------')
-        // })
      }else{
         fs.writeFileSync('citas.json', JSON.stringify([mascota]));
         // console.log( mascota)
@@ -43,20 +39,24 @@ const registrar = (nombreAnimal, edad, tipoAnimal, colorAnimal, enfermedad) => {
 
 const leer = () => {
   try{
-    //Se lee y muestra el contenido de citas.json
-    const leido =  fs.readFileSync('citas.json', 'utf-8');
-    const arreglotring = JSON.parse(leido);
-    if(arreglotring.length > 0){
-        console.log('-------------------------------------------------------------------------------')
-        console.log('-------------------- REGISTRO DE CITAS - VETERINARIA JS -----------------------')
-        console.log('-------------------------------------------------------------------------------')
-        
-        arreglotring.forEach((element,index) => {
-            console.log(`Imprimiendo cita N° ${index + 1}:`, element)
-            console.log('-------------------------------------------------------------------------------')   
-        });
+    if(fs.existsSync('citas.json')){
+        //Se lee y muestra el contenido de citas.json
+        const leido =  fs.readFileSync('citas.json', 'utf-8');
+        const arreglotring = JSON.parse(leido);
+        if(arreglotring.length > 0){
+            console.log('-------------------------------------------------------------------------------')
+            console.log('-------------------- REGISTRO DE CITAS - VETERINARIA JS -----------------------')
+            console.log('-------------------------------------------------------------------------------')
+            
+            arreglotring.forEach((element,index) => {
+                console.log(`Imprimiendo cita N° ${index + 1}:`, element)
+                console.log('-------------------------------------------------------------------------------')   
+            });
+        }else{
+            console.log('No existen citas registradas en nuestros archivos.')
+        }
     }else{
-        console.log('No existen citas registradas en nuestros archivos.')
+        console.log('No existe archivo citas.json. Debe ingresar cita.')
     }
   }catch (e){
     console.error(`Error al leer archivo: ${e}.`)
