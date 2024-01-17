@@ -12,8 +12,8 @@ node index registrar "miti miti" "1 año" perro cafe fiebre
 
 node index leer
 
----Función no reconocida. Debe ingresar "registrar" o "leer"--
+----------------Función no reconocida. Debe ingresar "registrar" o "leer"-----------------------------
 node index manejar
 
----------Menos argumentos
+-----------Menos argumentos-----------------------------------
 node index registrar "12 años" conejo negro
